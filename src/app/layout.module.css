@@ -1,0 +1,24 @@
+.Header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border: 1px solid var(--c-grey-100);
+}
+
+.LogoLink {
+  text-decoration: none;
+  color: var(--c-black);
+
+  & h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 500;
+  }
+}
+
+.CartLink {
+  text-decoration: none;
+  color: var(--c-black);
+  font-size: 1.2rem;
+}

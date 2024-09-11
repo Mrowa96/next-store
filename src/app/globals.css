@@ -4,6 +4,11 @@
   /* Colors */
   --c-black: #000;
   --c-white: #fff;
+  --c-grey-100: #eaeaea;
+  --c-grey-200: #d4d4d4;
+  --c-grey-300: #c7c7c7;
+  --c-grey-400: #b6b6b6;
+  --c-grey-500: #8a8a8a;
 
   /* Border radius */
   --br-primary: 8px;
