@@ -4,7 +4,9 @@ import type { Metadata } from 'next';
 import { Open_Sans } from 'next/font/google';
 import Link from 'next/link';
 
-import './globals.css';
+import { baseTitle } from '@/infrastructure/metadata';
+
+import './globals.scss';
 import styles from './layout.module.css';
 
 type Props = {
@@ -14,7 +16,7 @@ type Props = {
 const openSans = Open_Sans({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Next Store',
+  title: baseTitle,
   description: 'Buy amazing stuff in our store!',
 };
 
@@ -31,7 +33,7 @@ export default function RootLayout({ children }: Props) {
             Cart
           </Link>
         </header>
-        <main>{children}</main>
+        <main className={styles.MainContent}>{children}</main>
       </body>
     </html>
   );

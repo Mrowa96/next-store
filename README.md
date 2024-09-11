@@ -13,6 +13,10 @@
 - Then `npm start` to start the app in dev mode
 - App will be available under `http://localhost:3000/`
 
+### Technical information
+
+- We use css & sass. Sass only if we need variables eg. for breakpoints.
+
 ## Technical Requirements:
 
 - Web application should be created using React and Next.JS
@@ -50,3 +54,8 @@
 - Maintainability
 - Testability
 - Readability
+
+## TODO
+
+- Popover instead title
+- Check photos responsivness

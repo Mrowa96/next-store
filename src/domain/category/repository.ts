@@ -14,7 +14,7 @@ export async function getAllCategories() {
   );
 
   if (result.isOk) {
-    return result.data;
+    return result.data.map((item) => decodeURIComponent(item));
   }
 
   return [];

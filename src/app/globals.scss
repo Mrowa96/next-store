@@ -9,6 +9,18 @@
   --c-grey-300: #c7c7c7;
   --c-grey-400: #b6b6b6;
   --c-grey-500: #8a8a8a;
+  --c-grey-600: #696969;
+  --c-grey-700: #484848;
+  --c-grey-800: #353535;
+  --c-grey-900: #151515;
+  --c-blue-300: #084db5;
+  --c-blue-400: #0747a6;
+  --c-blue-500: #064095;
+
+  --c-primary-text: var(--c-white);
+  --c-primary-bg: var(--c-blue-400);
+  --c-primary-border: var(--c-blue-500);
+  --c-primary-bg-hover: var(--c-blue-500);
 
   /* Border radius */
   --br-primary: 8px;
@@ -25,13 +37,12 @@
   --zi-3: 3;
 }
 
-html {
-  height: 100%;
-}
-
 html,
 body {
+  min-width: 320px;
+  height: 100%;
   width: 100%;
+  overflow-x: auto;
   margin: 0;
   padding: 0;
   font-size: 16px;
@@ -41,10 +52,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  min-height: 100%;
-}
-
 button,
 input,
 optgroup,
@@ -52,4 +59,30 @@ select,
 textarea {
   /* Has to reset default value of normalize.css */
   line-height: 1.2;
+}
+
+.truncate-one-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.line-clamp-1,
+.line-clamp-2,
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-1 {
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+  -webkit-line-clamp: 2;
+}
+
+.line-clamp-3 {
+  -webkit-line-clamp: 3;
 }
