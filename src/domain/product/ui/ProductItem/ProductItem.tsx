@@ -1,13 +1,20 @@
+'use client';
+
 import Image from 'next/image';
 
 import { type Product } from '../../types';
 import styles from './ProductItem.module.css';
+import { addProductToCart } from './actions';
 
 type Props = {
   product: Product;
 };
 
 export function ProductItem({ product }: Props) {
+  const addToCartButtonClickHandler = async () => {
+    await addProductToCart(product.id);
+  };
+
   return (
     <article className={styles.ProductItem} data-testid="product-item">
       <div className={styles.ImageWrapper}>
@@ -33,7 +40,11 @@ export function ProductItem({ product }: Props) {
           }).format(product.price)}
         </span>
 
-        <button type="button" className={styles.AddToCartButton}>
+        <button
+          type="button"
+          className={styles.AddToCartButton}
+          onClick={addToCartButtonClickHandler}
+        >
           Add to cart
         </button>
       </div>

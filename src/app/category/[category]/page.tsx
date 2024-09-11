@@ -11,8 +11,6 @@ type Props = {
   };
 };
 
-export const dynamic = 'error';
-
 export async function generateMetadata(
   { params: { category } }: Props,
   parent: ResolvingMetadata,

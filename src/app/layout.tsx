@@ -4,6 +4,8 @@ import type { Metadata } from 'next';
 import { Open_Sans } from 'next/font/google';
 import Link from 'next/link';
 
+import { CartService } from '@/domain/cart/services/CartService';
+
 import { baseTitle } from '@/infrastructure/metadata';
 
 import './globals.scss';
@@ -14,13 +16,16 @@ type Props = {
 };
 
 const openSans = Open_Sans({ subsets: ['latin'] });
+const cartService = new CartService();
 
 export const metadata: Metadata = {
   title: baseTitle,
   description: 'Buy amazing stuff in our store!',
 };
 
-export default function RootLayout({ children }: Props) {
+export default async function RootLayout({ children }: Props) {
+  const productsInCartQuantity = await cartService.getProductsQuantityInCart();
+
   return (
     <html lang="en">
       <body className={openSans.className}>
@@ -30,7 +35,7 @@ export default function RootLayout({ children }: Props) {
           </Link>
 
           <Link href="/cart" title="Go to cart" className={styles.CartLink}>
-            Cart
+            Cart ({productsInCartQuantity})
           </Link>
         </header>
         <main className={styles.MainContent}>{children}</main>
