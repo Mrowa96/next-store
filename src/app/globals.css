@@ -1,42 +1,50 @@
+@import 'modern-normalize';
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Colors */
+  --c-black: #000;
+  --c-white: #fff;
+
+  /* Border radius */
+  --br-primary: 8px;
+  --br-secondary: 4px;
+  --br-full: 100%;
+
+  /* Transitions */
+  --tr-primary: 0.2s ease-in-out;
+
+  /* Z-indexes */
+  --zi-0: 0;
+  --zi-1: 1;
+  --zi-2: 2;
+  --zi-3: 3;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  height: 100%;
 }
 
 html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+body {
+  min-height: 100%;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+button,
+input,
+optgroup,
+select,
+textarea {
+  /* Has to reset default value of normalize.css */
+  line-height: 1.2;
 }
