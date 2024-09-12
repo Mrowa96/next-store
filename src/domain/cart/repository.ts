@@ -2,6 +2,7 @@ import { parse } from 'valibot';
 
 import { db } from '@/infrastructure/db';
 
+import { type Product } from '../product/types';
 import { cartWithProductsSchema, rawCartWithProductsSchema } from './schemas';
 import { type CartWithProducts } from './types';
 
@@ -13,6 +14,8 @@ export function getCartById(id: number): Promise<CartWithProducts> {
           c.id AS cart_id,
           c.created_at,
           cp.product_id,
+          cp.product_price,
+          cp.product_title,
           cp.quantity
         FROM cart c
         LEFT JOIN cart_products cp 
@@ -25,6 +28,10 @@ export function getCartById(id: number): Promise<CartWithProducts> {
           reject(error);
         }
 
+        if (!rows.length) {
+          reject(new Error(`Cannot find cart for id ${id}.`));
+        }
+
         const parsedData = parse(rawCartWithProductsSchema, rows);
 
         const data = {
@@ -33,6 +40,8 @@ export function getCartById(id: number): Promise<CartWithProducts> {
             .filter((item) => item.product_id !== null)
             .map((item) => ({
               id: item.product_id,
+              price: item.product_price,
+              title: item.product_title,
               quantity: item.quantity,
             })),
           createdAt: parsedData[0]?.created_at,
@@ -58,12 +67,33 @@ export function addCart(): Promise<{ id: number }> {
   });
 }
 
-export async function addProductToCart(data: { cartId: number; productId: number }): Promise<void> {
+export async function addProductToCart(data: { cartId: number; product: Product }): Promise<void> {
   return new Promise((resolve, reject) => {
     db.run(
       `
-        INSERT INTO cart_products(cart_id, product_id, quantity) 
-        VALUES (?,?,1);`,
+        INSERT INTO cart_products(cart_id, product_id, product_title, product_price, quantity) 
+        VALUES (?,?,?,?,1);`,
+      [data.cartId, data.product.id, data.product.title, data.product.price],
+      function callback(error) {
+        if (error) {
+          reject(error);
+        }
+
+        resolve();
+      },
+    );
+  });
+}
+
+export async function removeProductFromCart(data: {
+  cartId: number;
+  productId: number;
+}): Promise<void> {
+  return new Promise((resolve, reject) => {
+    db.run(
+      `
+        DELETE FROM cart_products
+        WHERE cart_id = ? AND product_id = ?;`,
       [data.cartId, data.productId],
       function callback(error) {
         if (error) {

@@ -1,0 +1,63 @@
+.Button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  border: 1px solid var(--c-white);
+  transition:
+    'background' var(--tr-primary),
+    'border-color' var(--tr-primary),
+    'color' var(--tr-primary);
+  appearance: none;
+  cursor: pointer;
+
+  &[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.VariantPrimary {
+  background: var(--c-primary-bg);
+  border-color: var(--c-primary-border);
+  color: var(--c-primary-text);
+
+  &:not([disabled]):hover {
+    background: var(--c-primary-bg-hover);
+    color: var(--c-primary-text-hover);
+  }
+}
+
+.VariantSecondary {
+  background: var(--c-secondary-bg);
+  border-color: var(--c-secondary-border);
+  color: var(--c-secondary-text);
+
+  &:not([disabled]):hover {
+    background: var(--c-secondary-bg-hover);
+    color: var(--c-secondary-text-hover);
+  }
+}
+
+.VariantCritical {
+  background: var(--c-critical-bg);
+  border-color: var(--c-critical-border);
+  color: var(--c-critical-text);
+
+  &:not([disabled]):hover {
+    background: var(--c-critical-bg-hover);
+    color: var(--c-critical-text-hover);
+  }
+}
+
+.ShapeNormal {
+  border-radius: var(--br-primary);
+  padding: 0.5rem 1rem;
+}
+
+.ShapeRound {
+  border-radius: var(--br-full);
+  padding: 0;
+  width: 24px;
+  height: 24px;
+}

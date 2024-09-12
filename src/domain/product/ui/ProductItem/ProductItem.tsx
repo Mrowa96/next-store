@@ -2,9 +2,12 @@
 
 import Image from 'next/image';
 
+import { Button } from '@/ui/Button';
+
+import { addProductToCart } from '../../actions';
 import { type Product } from '../../types';
+import { formatNumberToUSD } from '../../utils';
 import styles from './ProductItem.module.css';
-import { addProductToCart } from './actions';
 
 type Props = {
   product: Product;
@@ -12,7 +15,7 @@ type Props = {
 
 export function ProductItem({ product }: Props) {
   const addToCartButtonClickHandler = async () => {
-    await addProductToCart(product.id);
+    await addProductToCart(product);
   };
 
   return (
@@ -34,19 +37,12 @@ export function ProductItem({ product }: Props) {
       </h3>
       <div className={styles.Footer}>
         <span className={styles.Price} data-testid="product-item-price">
-          {new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          }).format(product.price)}
+          {formatNumberToUSD(product.price)}
         </span>
 
-        <button
-          type="button"
-          className={styles.AddToCartButton}
-          onClick={addToCartButtonClickHandler}
-        >
+        <Button className={styles.AddToCartButton} onClick={addToCartButtonClickHandler}>
           Add to cart
-        </button>
+        </Button>
       </div>
     </article>
   );

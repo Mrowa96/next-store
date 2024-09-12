@@ -16,11 +16,29 @@
   --c-blue-300: #084db5;
   --c-blue-400: #0747a6;
   --c-blue-500: #064095;
+  --c-red-200: #da3d3d;
+  --c-red-300: #c03535;
+  --c-red-400: #a82d2d;
+  --c-red-500: #922727;
+  --c-red-600: #741f1f;
 
   --c-primary-text: var(--c-white);
   --c-primary-bg: var(--c-blue-400);
   --c-primary-border: var(--c-blue-500);
   --c-primary-bg-hover: var(--c-blue-500);
+  --c-primary-text-hover: var(--c-white);
+
+  --c-secondary-text: var(--c-blue-400);
+  --c-secondary-bg: var(--c-white);
+  --c-secondary-border: var(--c-blue-400);
+  --c-secondary-bg-hover: var(--c-blue-400);
+  --c-secondary-text-hover: var(--c-white);
+
+  --c-critical-text: var(--c-red-400);
+  --c-critical-bg: var(--c-white);
+  --c-critical-border: var(--c-red-400);
+  --c-critical-bg-hover: var(--c-red-400);
+  --c-critical-text-hover: var(--c-white);
 
   /* Border radius */
   --br-primary: 8px;

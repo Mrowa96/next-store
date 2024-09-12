@@ -15,6 +15,8 @@ db.serialize(() => {
       id INTEGER NOT NULL PRIMARY KEY, 
       cart_id INTEGER NOT NULL,
       product_id INTEGER NOT NULL,
+      product_title TEXT NOT NULL,
+      product_price REAL NOT NULL,
       quantity INTEGER NOT NULL DEFAULT 0,
       FOREIGN KEY (cart_id)
         REFERENCES cart (id) 

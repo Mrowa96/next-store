@@ -1,0 +1,100 @@
+.CartManager {
+  --cart-manager-columns: repeat(12, 1fr);
+  --cart-manager-title-column: 1/5;
+  --cart-manager-price-column: 5/7;
+  --cart-manager-quantity-column: 7/9;
+  --cart-manager-total-price-column: 9/11;
+  --cart-manager-action-column: 11/13;
+
+  @media (width <= $smBreakpoint) {
+    --cart-manager-title-column: 1/13;
+    --cart-manager-price-column: 2/5;
+    --cart-manager-quantity-column: 5/8;
+    --cart-manager-total-price-column: 8/10;
+    --cart-manager-action-column: 10/12;
+  }
+
+  @media (width <= $xsBreakpoint) {
+    --cart-manager-price-column: 2/4;
+    --cart-manager-quantity-column: 4/7;
+    --cart-manager-total-price-column: 7/9;
+    --cart-manager-action-column: 9/11;
+  }
+
+  @media (width <= $xssBreakpoint) {
+    --cart-manager-price-column: 1/3;
+    --cart-manager-quantity-column: 3/7;
+    --cart-manager-total-price-column: 7/9;
+    --cart-manager-action-column: 9/13;
+  }
+
+  display: flex;
+  flex-flow: column;
+  margin: auto;
+}
+
+.Title {
+  font-weight: 500;
+  font-size: 1.5rem;
+  margin: 0 0 1rem;
+}
+
+.EmptyMessage {
+  margin: 0;
+}
+
+.Header {
+  display: grid;
+  grid-template-columns: var(--cart-manager-columns);
+  font-weight: 500;
+  border-bottom: 1px solid var(--c-grey-100);
+  padding: 1rem 0;
+
+  @media (width <= $smBreakpoint) {
+    display: none;
+  }
+
+  .TitleHeader {
+    grid-column: var(--cart-manager-title-column);
+  }
+
+  .PriceHeader {
+    grid-column: var(--cart-manager-price-column);
+    text-align: center;
+  }
+
+  .QuantityHeader {
+    grid-column: var(--cart-manager-quantity-column);
+    text-align: center;
+  }
+
+  .TotalPriceHeader {
+    grid-column: var(--cart-manager-total-price-column);
+    text-align: center;
+  }
+
+  .ActionHeader {
+    grid-column: var(--cart-manager-action-column);
+  }
+}
+
+.Items {
+  display: flex;
+  flex-flow: column;
+
+  @media (width <= $smBreakpoint) {
+    gap: 2rem;
+  }
+}
+
+.TotalCost {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+
+  .Value {
+    font-weight: 600;
+  }
+}

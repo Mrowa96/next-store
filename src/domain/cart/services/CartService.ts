@@ -1,10 +1,21 @@
 import { cookies } from 'next/headers';
 
-import { addCart, addProductToCart, getCartById, updateProductQuantityInCart } from '../repository';
+import { type Product } from '@/domain/product/types';
+
+import {
+  addCart,
+  addProductToCart,
+  getCartById,
+  removeProductFromCart,
+  updateProductQuantityInCart,
+} from '../repository';
 
 export class CartService {
   #CART_ID_COOKIE = 'cart_id';
 
+  /**
+   * Creates cart in database and sets cookie with cart id.
+   */
   async #createCart() {
     const cartId = (await addCart()).id;
 
@@ -30,7 +41,9 @@ export class CartService {
     return rawCartId ? Number.parseInt(rawCartId) : null;
   }
 
-  /** If cart doesn't exist it will be created */
+  /**
+   * Always returns cart. If it doesn't exist it will be created.
+   */
   async #getCurrentCartSafe() {
     const cartId = await this.#getCurrentCartId(true);
 
@@ -62,10 +75,22 @@ export class CartService {
     }, 0);
   }
 
-  async addProductToCart(productId: number) {
+  async getTotalCostOfProductsInCart() {
+    const cart = await this.getCurrentCart();
+
+    if (!cart) {
+      return 0;
+    }
+
+    return cart.products.reduce((totalCost, product) => {
+      return totalCost + product.quantity * product.price;
+    }, 0);
+  }
+
+  async addProductToCart(product: Product) {
     try {
       const cart = await this.#getCurrentCartSafe();
-      const existingProduct = cart.products.find((product) => product.id === productId);
+      const existingProduct = cart.products.find(({ id }) => id === product.id);
 
       if (existingProduct) {
         await updateProductQuantityInCart({
@@ -76,7 +101,7 @@ export class CartService {
       } else {
         await addProductToCart({
           cartId: cart.id,
-          productId,
+          product,
         });
       }
 
@@ -89,5 +114,54 @@ export class CartService {
         error,
       };
     }
+  }
+
+  async changeProductQuantityInCart(productId: number, mode: 'increase' | 'decrease') {
+    const cart = await this.getCurrentCart();
+
+    if (!cart) {
+      throw new Error('Cart has to be defined at this point.');
+    }
+
+    const existingProduct = cart.products.find((product) => product.id === productId);
+
+    if (!existingProduct) {
+      throw new Error(`Cannot find product with id ${productId} in cart with id ${cart.id}`);
+    }
+
+    if (mode === 'increase') {
+      await updateProductQuantityInCart({
+        cartId: cart.id,
+        productId: existingProduct.id,
+        quantity: existingProduct.quantity + 1,
+      });
+    } else {
+      if (existingProduct.quantity - 1 === 0) {
+        await removeProductFromCart({ cartId: cart.id, productId: existingProduct.id });
+      } else {
+        await updateProductQuantityInCart({
+          cartId: cart.id,
+          productId: existingProduct.id,
+          quantity: existingProduct.quantity - 1,
+        });
+      }
+    }
+
+    return true;
+  }
+
+  async removeProductFromCart(productId: number) {
+    const cart = await this.getCurrentCart();
+
+    if (!cart) {
+      throw new Error('Cart has to be defined at this point.');
+    }
+
+    await removeProductFromCart({
+      cartId: cart.id,
+      productId,
+    });
+
+    return true;
   }
 }
