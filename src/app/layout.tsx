@@ -4,9 +4,10 @@ import type { Metadata } from 'next';
 import { Open_Sans } from 'next/font/google';
 import Link from 'next/link';
 
+import { CartLink } from '@/domain/cart/ui/CartLink';
+
 import { baseTitle } from '@/infrastructure/metadata';
 
-import { CartLink } from './_components/CartLink';
 import './globals.scss';
 import styles from './layout.module.css';
 
