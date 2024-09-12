@@ -2,6 +2,8 @@
 
 import { useFormState, useFormStatus } from 'react-dom';
 
+import { FiMinus } from 'react-icons/fi';
+
 import { decreaseProductQuantityAction } from '@/domain/cart/actions';
 
 import { Button } from '@/ui/Button';
@@ -15,7 +17,7 @@ function DecreaseQuantityButton() {
 
   return (
     <Button type="submit" variant="secondary" shape="round" disabled={pending}>
-      -
+      <FiMinus />
     </Button>
   );
 }

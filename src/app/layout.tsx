@@ -4,6 +4,8 @@ import type { Metadata } from 'next';
 import { Open_Sans } from 'next/font/google';
 import Link from 'next/link';
 
+import { FiShoppingCart } from 'react-icons/fi';
+
 import { CartService } from '@/domain/cart/services/CartService';
 
 import { baseTitle } from '@/infrastructure/metadata';
@@ -35,6 +37,7 @@ export default async function RootLayout({ children }: Props) {
           </Link>
 
           <Link href="/cart" title="Go to cart" className={styles.CartLink}>
+            <FiShoppingCart />
             Cart ({productsInCartQuantity})
           </Link>
         </header>

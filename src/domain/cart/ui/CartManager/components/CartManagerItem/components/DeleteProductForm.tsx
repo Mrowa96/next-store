@@ -2,6 +2,8 @@
 
 import { useFormState, useFormStatus } from 'react-dom';
 
+import { FiTrash } from 'react-icons/fi';
+
 import { deleteProductAction } from '@/domain/cart/actions';
 
 import { Button } from '@/ui/Button';
@@ -15,6 +17,7 @@ function DeleteButton() {
 
   return (
     <Button type="submit" variant="critical" disabled={pending}>
+      <FiTrash />
       Delete
     </Button>
   );

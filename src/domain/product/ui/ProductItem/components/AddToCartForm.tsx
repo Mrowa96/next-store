@@ -2,6 +2,8 @@
 
 import { useFormState, useFormStatus } from 'react-dom';
 
+import { FiPlus } from 'react-icons/fi';
+
 import { Button } from '@/ui/Button';
 
 import { addProductToCartAction } from '../../../actions';
@@ -16,6 +18,7 @@ function AddToCartButton() {
 
   return (
     <Button type="submit" disabled={pending}>
+      <FiPlus />
       Add to cart
     </Button>
   );
