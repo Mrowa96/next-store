@@ -1,8 +1,13 @@
 import { cleanup, render } from '@testing-library/react';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { type Product } from '../../types';
 import { ProductGrid } from './ProductGrid';
+
+// We have to mock because of problem with useFormState
+vi.mock('../ProductItem', () => ({
+  ProductItem: () => <div data-testid="product-item"></div>,
+}));
 
 describe('<ProductGrid />', () => {
   afterEach(() => {

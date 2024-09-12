@@ -10,7 +10,7 @@ type Props = {
 export function CategoryGrid({ categories }: Props) {
   return (
     <div className={styles.CategoryGrid}>
-      <h2 className={styles.Title}>Categories: </h2>
+      <h2 className={styles.Title}>Categories</h2>
       <div className={styles.Content}>
         {categories.length === 0 ? (
           <p className={styles.NoCategoriesMessage}>No categories</p>

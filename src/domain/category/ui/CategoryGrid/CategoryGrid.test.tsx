@@ -11,7 +11,7 @@ describe('<CategoryGrid />', () => {
   it('should display title', () => {
     const { getByRole } = render(<CategoryGrid categories={[]} />);
 
-    expect(getByRole('heading', { level: 2 })).toHaveTextContent('Categories:');
+    expect(getByRole('heading', { level: 2 })).toHaveTextContent('Categories');
   });
 
   it('should display no categories text', () => {

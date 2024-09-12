@@ -18,7 +18,8 @@
     "check:lint": "eslint . --ext .js,.cjs,.mjs,.ts,.tsx  --max-warnings 0",
     "check:types": "tsc --noEmit",
     "check:all": "concurrently -g --timings \"npm:check:fmt\" \"npm:check:lint\" \"npm:check:types\"",
-    "test": "vitest"
+    "test": "vitest",
+    "test:ci": "vitest --watch=false"
   },
   "dependencies": {
     "clsx": "2.1.1",

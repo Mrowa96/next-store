@@ -1,5 +1,5 @@
 import { cleanup, render } from '@testing-library/react';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { ProductItem } from './ProductItem';
 
@@ -9,6 +9,13 @@ const dummyProduct = {
   price: 99.99,
   image: 'https://dummyimage.com/600x400/000/fff',
 };
+
+// We have to mock those, because vite is using react defined in package.json and Next.js is using different one.
+vi.mock(import('react-dom'), async () => ({
+  ...(await vi.importActual('react-dom')),
+  useFormState: vi.fn().mockReturnValue([]),
+  useFormStatus: vi.fn().mockReturnValue({ pending: false }),
+}));
 
 describe('<ProductItem />', () => {
   afterEach(() => {
