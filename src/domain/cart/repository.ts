@@ -85,7 +85,7 @@ export async function addProductToCart(data: { cartId: number; product: Product 
   });
 }
 
-export async function removeProductFromCart(data: {
+export async function deleteProductFromCart(data: {
   cartId: number;
   productId: number;
 }): Promise<void> {

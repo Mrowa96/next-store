@@ -13,6 +13,7 @@
     "start:prod": "TZ=UTC next start",
     "build": "TZ=UTC next build --no-lint",
     "build:preview": "TZ=UTC next build --no-lint && next start",
+    "build:analyze": "TZ=UTC ANALYZE=1 next build --no-lint",
     "fmt": "prettier -w \"**/*.{js,cjs,mjs,ts,tsx,json,md,yml}\"",
     "check:fmt": "prettier -c \"**/*.{js,cjs,mjs,ts,tsx,json,md,yml}\"",
     "check:lint": "eslint . --ext .js,.cjs,.mjs,.ts,.tsx  --max-warnings 0",
@@ -34,6 +35,7 @@
     "valibot": "0.41.0"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "14.2.9",
     "@next/eslint-plugin-next": "14.2.9",
     "@testing-library/dom": "10.4.0",
     "@testing-library/jest-dom": "6.5.0",

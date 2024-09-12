@@ -5,8 +5,8 @@ import { type Product } from '@/domain/product/types';
 import {
   addCart,
   addProductToCart,
+  deleteProductFromCart,
   getCartById,
-  removeProductFromCart,
   updateProductQuantityInCart,
 } from '../repository';
 
@@ -128,7 +128,7 @@ export class CartService {
       });
     } else {
       if (existingProduct.quantity - 1 === 0) {
-        await removeProductFromCart({ cartId: cart.id, productId: existingProduct.id });
+        await deleteProductFromCart({ cartId: cart.id, productId: existingProduct.id });
       } else {
         await updateProductQuantityInCart({
           cartId: cart.id,
@@ -141,14 +141,14 @@ export class CartService {
     return true;
   }
 
-  async removeProductFromCart(productId: number) {
+  async deleteProductFromCart(productId: number) {
     const cart = await this.getCurrentCart();
 
     if (!cart) {
       throw new Error('Cart has to be defined at this point.');
     }
 
-    await removeProductFromCart({
+    await deleteProductFromCart({
       cartId: cart.id,
       productId,
     });

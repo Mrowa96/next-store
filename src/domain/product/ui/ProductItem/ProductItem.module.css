@@ -32,23 +32,4 @@
     font-size: 1rem;
     font-weight: 500;
   }
-
-  .AddToCartButton {
-    appearance: none;
-    padding: 0.5rem 1rem;
-    font-weight: 500;
-    color: var(--c-primary-text);
-    background: var(--c-primary-bg);
-    border: 1px solid var(--c-primary-border);
-    border-radius: var(--br-primary);
-    box-shadow: none;
-    cursor: pointer;
-    transition: background var(--tr-primary);
-
-    @media (hover: hover) {
-      &:hover {
-        background: var(--c-primary-bg-hover);
-      }
-    }
-  }
 }

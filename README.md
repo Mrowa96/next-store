@@ -4,8 +4,8 @@
 
 ### Requirements
 
-- node >= 20.9.0
-  You can use `nvm` to use specific version with `nvm use` command.
+- node >= 20.17.0
+  - You can use `nvm` to use specific version with `nvm use` command.
 
 ### How to start?
 
@@ -29,7 +29,7 @@
 - Category Page
 - Cart page
 
-## Functional Requirements:
+### Functional Requirements:
 
 - Main Page:
   - List all categories
@@ -49,13 +49,15 @@
   - Allow user to remove a product from the cart.
   - Allow user to change quantity of a product added to the cart.
 
-## Quality Requirements:
+### Quality Requirements:
 
 - Maintainability
 - Testability
 - Readability
 
-## TODO
+## Information for reviewer
 
-- Popover instead title
-- Check photos responsivness
+- I added few tests, but not for everything, because of lack of time
+- I decided to went with sqlite database for cart storage after talking to Marcin Jezierski who wanted to have those information stored somehow.
+  - This unfortunately created situation where we need to store product information in db, so we have mix of some data from fakestoreapi and some from our db. But for some demo app I think is fine.
+- I'm storing cart id in HttpOnly cookie. In normal application it won't be the case ofc.

@@ -67,13 +67,13 @@ export async function decreaseProductQuantityAction(
   };
 }
 
-export async function removeProductAction(
+export async function deleteProductAction(
   _state: ActionState,
   formData: FormData,
 ): Promise<ActionState> {
   const productId = Number.parseInt(formData.get('productId')?.toString() || '0');
 
-  const { result, error } = await tryCatch(() => cartService.removeProductFromCart(productId));
+  const { result, error } = await tryCatch(() => cartService.deleteProductFromCart(productId));
 
   if (result) {
     revalidatePath('/', 'layout');
@@ -88,6 +88,6 @@ export async function removeProductAction(
 
   return {
     status: 'error',
-    error: 'Cannot remove product.',
+    error: 'Cannot delete product.',
   };
 }

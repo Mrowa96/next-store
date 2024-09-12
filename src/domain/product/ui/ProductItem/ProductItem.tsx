@@ -1,36 +1,15 @@
-'use client';
-
-import { useFormState, useFormStatus } from 'react-dom';
-
 import Image from 'next/image';
 
-import { Button } from '@/ui/Button';
-
-import { addProductToCartAction } from '../../actions';
 import { type Product } from '../../types';
 import { formatNumberToUSD } from '../../utils';
 import styles from './ProductItem.module.css';
+import { AddToCartForm } from './components/AddToCartForm';
 
 type Props = {
   product: Product;
 };
 
-function AddToCartButton() {
-  const { pending } = useFormStatus();
-
-  return (
-    <Button type="submit" className={styles.AddToCartButton} disabled={pending}>
-      Add to cart
-    </Button>
-  );
-}
-
 export function ProductItem({ product }: Props) {
-  const [, addTProductToCart] = useFormState(addProductToCartAction, {
-    status: 'initial',
-    error: null,
-  });
-
   return (
     <article className={styles.ProductItem} data-testid="product-item">
       <div className={styles.ImageWrapper}>
@@ -53,13 +32,7 @@ export function ProductItem({ product }: Props) {
           {formatNumberToUSD(product.price)}
         </span>
 
-        <form action={addTProductToCart}>
-          <input type="hidden" name="id" value={product.id} />
-          <input type="hidden" name="title" value={product.title} />
-          <input type="hidden" name="price" value={product.price} />
-
-          <AddToCartButton />
-        </form>
+        <AddToCartForm product={product} />
       </div>
     </article>
   );
