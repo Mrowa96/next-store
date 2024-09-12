@@ -23,7 +23,6 @@ export class CartService {
     cookies().set(this.#CART_ID_COOKIE, `${cartId}`, {
       httpOnly: true,
       sameSite: 'lax',
-      secure: true,
       maxAge: 60 * 60 * 24 * 14,
     });
 
