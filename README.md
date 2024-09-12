@@ -10,8 +10,8 @@
 ### How to start?
 
 - Run `npm i` to setup local development
-- Then `npm start` to start the app in dev mode
-- App will be available under `http://localhost:3000/`
+- Then `npm start` to start the app in dev mode or `npm run build:preview` to start app in prod mode
+  - App will be available under `http://localhost:3000/`
 
 ### Technical information
 
