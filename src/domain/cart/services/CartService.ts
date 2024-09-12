@@ -88,32 +88,23 @@ export class CartService {
   }
 
   async addProductToCart(product: Product) {
-    try {
-      const cart = await this.#getCurrentCartSafe();
-      const existingProduct = cart.products.find(({ id }) => id === product.id);
+    const cart = await this.#getCurrentCartSafe();
+    const existingProduct = cart.products.find(({ id }) => id === product.id);
 
-      if (existingProduct) {
-        await updateProductQuantityInCart({
-          cartId: cart.id,
-          productId: existingProduct.id,
-          quantity: existingProduct.quantity + 1,
-        });
-      } else {
-        await addProductToCart({
-          cartId: cart.id,
-          product,
-        });
-      }
-
-      return {
-        status: 'success',
-      };
-    } catch (error) {
-      return {
-        status: 'error',
-        error,
-      };
+    if (existingProduct) {
+      await updateProductQuantityInCart({
+        cartId: cart.id,
+        productId: existingProduct.id,
+        quantity: existingProduct.quantity + 1,
+      });
+    } else {
+      await addProductToCart({
+        cartId: cart.id,
+        product,
+      });
     }
+
+    return true;
   }
 
   async changeProductQuantityInCart(productId: number, mode: 'increase' | 'decrease') {
