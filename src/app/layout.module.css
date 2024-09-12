@@ -21,27 +21,6 @@
   }
 }
 
-.CartLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: var(--c-primary-text);
-  background: var(--c-primary-bg);
-  border: 1px solid var(--primary-border);
-  border-radius: var(--br-primary);
-  padding: 0.5rem 1rem;
-  transition: background var(--tr-primary);
-
-  @media (hover: hover) {
-    &:hover {
-      background: var(--c-primary-bg-hover);
-    }
-  }
-}
-
 .MainContent {
   padding: 1rem;
   max-width: 1200px;

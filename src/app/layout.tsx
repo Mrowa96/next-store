@@ -1,15 +1,12 @@
-import { type ReactNode } from 'react';
+import { type ReactNode, Suspense } from 'react';
 
 import type { Metadata } from 'next';
 import { Open_Sans } from 'next/font/google';
 import Link from 'next/link';
 
-import { FiShoppingCart } from 'react-icons/fi';
-
-import { CartService } from '@/domain/cart/services/CartService';
-
 import { baseTitle } from '@/infrastructure/metadata';
 
+import { CartLink } from './_components/CartLink';
 import './globals.scss';
 import styles from './layout.module.css';
 
@@ -18,7 +15,6 @@ type Props = {
 };
 
 const openSans = Open_Sans({ subsets: ['latin'] });
-const cartService = new CartService();
 
 export const metadata: Metadata = {
   title: baseTitle,
@@ -26,8 +22,6 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: Props) {
-  const productsInCartQuantity = await cartService.getProductsQuantityInCart();
-
   return (
     <html lang="en">
       <body className={openSans.className}>
@@ -36,10 +30,10 @@ export default async function RootLayout({ children }: Props) {
             <h1>Next Store</h1>
           </Link>
 
-          <Link href="/cart" title="Go to cart" className={styles.CartLink}>
-            <FiShoppingCart />
-            Cart ({productsInCartQuantity})
-          </Link>
+          {/* Just as example how to handle slow data fethcing on server */}
+          <Suspense>
+            <CartLink />
+          </Suspense>
         </header>
         <main className={styles.MainContent}>{children}</main>
       </body>

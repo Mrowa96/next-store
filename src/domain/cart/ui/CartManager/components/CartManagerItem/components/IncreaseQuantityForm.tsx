@@ -16,7 +16,13 @@ function IncreaseQuantityButton() {
   const { pending } = useFormStatus();
 
   return (
-    <Button type="submit" variant="secondary" shape="round" disabled={pending}>
+    <Button
+      type="submit"
+      variant="secondary"
+      shape="round"
+      disabled={pending}
+      title="Increase quantity"
+    >
       <FiPlus />
     </Button>
   );
